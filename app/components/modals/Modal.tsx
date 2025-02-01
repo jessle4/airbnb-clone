@@ -3,6 +3,7 @@
 import { useCallback, useEffect } from "react";
 import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
+import Button from "../Button";
 
 interface ModalProps {
   isOpen?: boolean;
@@ -14,7 +15,7 @@ interface ModalProps {
   actionLabel: String;
   disabled?: boolean;
   secondaryAction?: () => void;
-  secondaryLabel?: string;
+  secondaryActionLabel?: string;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -27,6 +28,7 @@ const Modal: React.FC<ModalProps> = ({
   actionLabel,
   disabled,
   secondaryAction,
+  secondaryActionLabel,
   secondaryLabel,
 }) => {
   const [showModal, setShowModal] = useState(isOpen);
@@ -142,12 +144,33 @@ const Modal: React.FC<ModalProps> = ({
                 >
                   <IoMdClose size={18} />
                 </button>
-                <div className="text-lg font-semibold">{title}
-                    
+                <div className="text-lg font-semibold">{title}</div>
+              </div>
+              {/*BODY*/}
+              <div className="relative p-6 flex-auto">{body}</div>
+              {/*FOOTER*/}
+              <div className="flex flex-col gap-2 p-6">
+                <div
+                  className="
+                flex
+                flex-row
+                items-centergap-6
+                w-full"
+                >
+                  {secondaryAction && secondaryActionLabel && (
+                    <Button
+                      outline
+                      dgisabled={disabled}
+                      label={secondaryActionLabel}
+                      onClick={handleSecondaryAction}
+                    />
+                  )}
+                  <Button
+                    disabled={disabled}
+                    label={actionLabel}
+                    onClick={handleSubmit}
+                  />
                 </div>
-                </div>
-                <div>
-                   {/**body */} 
               </div>
             </div>
           </div>
