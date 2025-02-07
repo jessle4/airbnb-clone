@@ -160,7 +160,7 @@ const Modal: React.FC<ModalProps> = ({
                   {secondaryAction && secondaryActionLabel && (
                     <Button
                       outline
-                      dgisabled={disabled}
+                      disabled={disabled}
                       label={secondaryActionLabel}
                       onClick={handleSecondaryAction}
                     />
